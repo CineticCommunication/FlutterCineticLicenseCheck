@@ -25,26 +25,21 @@ class _LicenseCheckState extends State<FlutterLicenseCheck> {
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
-    return Stack(
-      children: <Widget>[
-        (!actif)
-            ? Container(
-                width: screenWidth,
-                height: screenHeight,
-                decoration: BoxDecoration(color: Colors.red.withOpacity(0.75)),
-                child: Center(
-                  child: Text(
-                    "Votre license est expirée/ Your license has expired",
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ),
-              )
-            : Container(),
-        body,
-      ],
-    );
+    return (actif)
+        ? Container(
+            width: screenWidth,
+            height: screenHeight,
+            decoration: BoxDecoration(color: Colors.red.withOpacity(0.75)),
+            child: Center(
+              child: Text(
+                "Votre license est expirée/ Your license has expired",
+                style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+            ),
+          )
+        : body;
   }
 }
