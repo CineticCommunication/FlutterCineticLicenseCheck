@@ -3,19 +3,20 @@ import 'dart:async';
 import 'package:FlutterCineticLicenseCheck/services/licence.service.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(FlutterLicenseCheck());
-
-class FlutterLicenseCheck extends StatelessWidget {
-  // FlutterLicenseCheck({Key key, this.body, this.licence}) : super(key: key);
+class FlutterLicenseCheck extends StatefulWidget {
+  FlutterLicenseCheck({Key key, this.body, this.licence}) : super(key: key);
 
   final Widget body;
   final String licence;
 
-  final State<dynamic> state;
+  @override
+  _LicenseCheckState createState() => _LicenseCheckState(licence, body);
+}
 
+class _LicenseCheckState extends State<FlutterLicenseCheck> {
   bool actif = true;
 
-  FlutterLicenseCheck({Key key, this.body, this.licence, this.state}) : super(key: key) {
+  _LicenseCheckState(this.licence, this.body) {
     verifierLicence();
     horloge();
   }
@@ -24,9 +25,9 @@ class FlutterLicenseCheck extends StatelessWidget {
   void verifierLicence() async {
     await LicenceService.verifierLicence(licence).then((valide) {
       if (!valide) {
-        // state.setState(() {
+        setState(() {
           actif = valide;
-        // });
+        });
       }
     });
   }
@@ -38,6 +39,9 @@ class FlutterLicenseCheck extends StatelessWidget {
     });
   }
 
+  final Widget body;
+
+  final String licence;
 
   @override
   Widget build(BuildContext context) {
@@ -87,6 +91,4 @@ class FlutterLicenseCheck extends StatelessWidget {
           ))
         : body;
   }
-
 }
-
