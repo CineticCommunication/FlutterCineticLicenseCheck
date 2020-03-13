@@ -30,6 +30,12 @@ class _WidgetPrincipalState extends State<FlutterLicenseCheck> {
         setState(() {
           actif = valide;
         });
+      } else {
+        if (!actif) {
+          setState(() {
+            actif = valide;
+          });
+        }
       }
     });
   }
