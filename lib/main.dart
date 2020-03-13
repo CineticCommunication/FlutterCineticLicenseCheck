@@ -11,7 +11,7 @@ class FlutterLicenseCheck extends StatelessWidget {
   final Widget body;
   final String licence;
 
-  final dynamic state;
+  final State<dynamic> state;
 
   bool actif = true;
 
@@ -24,7 +24,6 @@ class FlutterLicenseCheck extends StatelessWidget {
   void verifierLicence() async {
     await LicenceService.verifierLicence(licence).then((valide) {
       if (!valide) {
-        
         state.setState(() {
           actif = valide;
         });
