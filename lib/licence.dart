@@ -25,7 +25,6 @@ class WidgetPrincipal extends StatefulWidget {
 
 class _WidgetPrincipalState extends State<WidgetPrincipal> {
   bool actif = true;
-  State state;
 
   Widget body;
   String licence;
@@ -39,11 +38,9 @@ class _WidgetPrincipalState extends State<WidgetPrincipal> {
   void verifierLicence() async {
     await LicenceService.verifierLicence(licence).then((valide) {
       if (!valide) {
-        state.setState(() {
+        setState(() {
           actif = valide;
         });
-        // setState(() {
-        // });
       }
     });
   }
@@ -51,6 +48,7 @@ class _WidgetPrincipalState extends State<WidgetPrincipal> {
   void horloge() async {
     const temps = const Duration(seconds: 1);
     new Timer.periodic(temps, (Timer t) {
+      print("kjashdkjahsd");
       verifierLicence();
     });
   }
