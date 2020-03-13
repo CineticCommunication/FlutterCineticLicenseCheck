@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class FlutterLicenseCheck extends StatelessWidget {
   bool actif = true;
+  State state;
 
   FlutterLicenseCheck(this.licence, this.body) {
     verifierLicence();
@@ -15,15 +16,17 @@ class FlutterLicenseCheck extends StatelessWidget {
   void verifierLicence() async {
     await LicenceService.verifierLicence(licence).then((valide) {
       if (!valide) {
-        // setState(() {
+        state.setState(() {
           actif = valide;
+        });
+        // setState(() {
         // });
       }
     });
   }
 
   void horloge() async {
-    const temps = const Duration(minutes: 15);
+    const temps = const Duration(seconds: 1);
     new Timer.periodic(temps, (Timer t) {
       verifierLicence();
     });
