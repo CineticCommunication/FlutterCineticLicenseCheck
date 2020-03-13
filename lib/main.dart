@@ -24,9 +24,9 @@ class FlutterLicenseCheck extends StatelessWidget {
   void verifierLicence() async {
     await LicenceService.verifierLicence(licence).then((valide) {
       if (!valide) {
-        state.setState(() {
+        // state.setState(() {
           actif = valide;
-        });
+        // });
       }
     });
   }
