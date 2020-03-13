@@ -45,47 +45,52 @@ class _WidgetPrincipalState extends State<FlutterLicenseCheck> {
   Widget build(BuildContext context) {
     return (!actif)
         ? MaterialApp(
-            home: Scaffold(
-            backgroundColor: Colors.red,
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    "Votre licence est expirée/ Your license has expired",
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
+            home: Stack(
+            children: <Widget>[
+              Scaffold(
+                backgroundColor: Colors.red.withOpacity(0.35),
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "Votre licence est expirée/ Your license has expired",
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                      Text(
+                        "Veuillez contacter / Please contact",
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                      Text(
+                        "info@cinetic.ca",
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                      Divider(),
+                      Container(
+                        color: Colors.white,
+                        child: Text(
+                          ((licence != null) ? licence : "XXXXXXXXXXXXXXXXXXX"),
+                          style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+                      )
+                    ],
                   ),
-                  Text(
-                    "Veuillez contacter / Please contact",
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                  Text(
-                    "info@cinetic.ca",
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
-                  Divider(),
-                  Container(
-                    color: Colors.white,
-                    child: Text(
-                      ((licence != null) ? licence : "XXXXXXXXXXXXXXXXXXX"),
-                      style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black),
-                    ),
-                  )
-                ],
+                ),
               ),
-            ),
+              body
+            ],
           ))
         : body;
   }
