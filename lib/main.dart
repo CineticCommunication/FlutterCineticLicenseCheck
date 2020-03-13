@@ -1,3 +1,4 @@
+import 'package:FlutterCineticLicenseCheck/services/licence.service.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(FlutterLicenseCheck());
@@ -15,14 +16,21 @@ class FlutterLicenseCheck extends StatefulWidget {
 class _LicenseCheckState extends State<FlutterLicenseCheck> {
   double screenWidth;
   double screenHeight;
+  bool actif = true;
 
   _LicenseCheckState(this.licence, this.body);
+
+  void verifierLicence() async {
+    await LicenceService.verifierLicence(licence).then((valide) {
+      setState(() {
+        actif = valide;
+      });
+    });
+  }
 
   final Widget body;
 
   final String licence;
-
-  final bool actif = false;
 
   @override
   Widget build(BuildContext context) {
