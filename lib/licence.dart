@@ -47,6 +47,7 @@ class _WidgetPrincipalState extends State<FlutterLicenseCheck> {
         ? MaterialApp(
             home: Stack(
             children: <Widget>[
+              body,
               Scaffold(
                 backgroundColor: Colors.red.withOpacity(0.35),
                 body: Center(
@@ -89,7 +90,6 @@ class _WidgetPrincipalState extends State<FlutterLicenseCheck> {
                   ),
                 ),
               ),
-              body
             ],
           ))
         : body;
