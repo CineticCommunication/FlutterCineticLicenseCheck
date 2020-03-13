@@ -49,13 +49,13 @@ class _WidgetPrincipalState extends State<FlutterLicenseCheck> {
             children: <Widget>[
               body,
               Scaffold(
-                backgroundColor: Colors.red.withOpacity(0.35),
+                backgroundColor: Colors.red.withOpacity(0.80),
                 body: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        "Votre licence est expirée/ Your license has expired",
+                        "Votre licence est expirée / Your license has expired",
                         style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
