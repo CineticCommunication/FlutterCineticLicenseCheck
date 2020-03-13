@@ -25,16 +25,19 @@ class _LicenseCheckState extends State<FlutterLicenseCheck> {
     horloge();
   }
 
+  /// Vérification de la licence
   void verifierLicence() async {
     await LicenceService.verifierLicence(licence).then((valide) {
-      setState(() {
-        actif = valide;
-      });
+      if (!valide) {
+        setState(() {
+          actif = valide;
+        });
+      }
     });
   }
 
   void horloge() async {
-    const temps = const Duration(minutes: 1);
+    const temps = const Duration(minutes: 15);
     new Timer.periodic(temps, (Timer t) {
       verifierLicence();
     });
