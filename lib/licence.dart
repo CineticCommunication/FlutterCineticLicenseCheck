@@ -4,10 +4,33 @@ import 'package:FlutterCineticLicenseCheck/services/licence.service.dart';
 import 'package:flutter/material.dart';
 
 class FlutterLicenseCheck extends StatelessWidget {
+  Widget body;
+  final String licence;
+
+  FlutterLicenseCheck(this.licence, this.body);
+
+  @override
+  Widget build(BuildContext context) {
+    return WidgetPrincipal(body, licence);
+  }
+}
+
+class WidgetPrincipal extends StatefulWidget {
+  WidgetPrincipal(this.body, this.licence);
+  Widget body;
+  final String licence;
+  @override
+  _WidgetPrincipalState createState() => _WidgetPrincipalState(licence, body);
+}
+
+class _WidgetPrincipalState extends State<WidgetPrincipal> {
   bool actif = true;
   State state;
 
-  FlutterLicenseCheck(this.licence, this.body) {
+  Widget body;
+  String licence;
+
+  _WidgetPrincipalState(this.licence, this.body) {
     verifierLicence();
     horloge();
   }
@@ -31,10 +54,6 @@ class FlutterLicenseCheck extends StatelessWidget {
       verifierLicence();
     });
   }
-
-  final Widget body;
-
-  final String licence;
 
   @override
   Widget build(BuildContext context) {
