@@ -18,7 +18,6 @@ class _WidgetPrincipalState extends State<FlutterLicenseCheck> {
   String licence;
 
   _WidgetPrincipalState(this.licence, this.body) {
-    print("jnkckjlnxcvkjnxckjb");
     verifierLicence();
     horloge();
   }
@@ -26,6 +25,7 @@ class _WidgetPrincipalState extends State<FlutterLicenseCheck> {
   /// Vérification de la licence
   void verifierLicence() async {
     await LicenceService.verifierLicence(licence).then((valide) {
+      print("Votre licence est " + ((valide) ? "valide" : "invalide"));
       if (!valide) {
         setState(() {
           actif = valide;
@@ -35,9 +35,8 @@ class _WidgetPrincipalState extends State<FlutterLicenseCheck> {
   }
 
   void horloge() async {
-    const temps = const Duration(seconds: 1);
+    const temps = const Duration(minutes: 15);
     new Timer.periodic(temps, (Timer t) {
-      print("kjashdkjahsd");
       verifierLicence();
     });
   }
