@@ -25,7 +25,7 @@ class _LicenseCheckState extends State<FlutterLicenseCheck> {
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
-    return (actif)
+    return (!actif)
         ? Container(
             width: screenWidth,
             height: screenHeight,
