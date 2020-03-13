@@ -18,7 +18,9 @@ class _LicenseCheckState extends State<FlutterLicenseCheck> {
   double screenHeight;
   bool actif = true;
 
-  _LicenseCheckState(this.licence, this.body);
+  _LicenseCheckState(this.licence, this.body) {
+    verifierLicence();
+  }
 
   void verifierLicence() async {
     await LicenceService.verifierLicence(licence).then((valide) {
