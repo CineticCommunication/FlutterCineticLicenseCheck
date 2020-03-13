@@ -11,7 +11,7 @@ class FlutterLicenseCheck extends StatelessWidget {
   final Widget body;
   final String licence;
 
-  final state;
+  final dynamic state;
 
   bool actif = true;
 
