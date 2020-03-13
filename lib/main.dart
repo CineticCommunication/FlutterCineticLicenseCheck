@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:FlutterCineticLicenseCheck/services/licence.service.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +22,7 @@ class _LicenseCheckState extends State<FlutterLicenseCheck> {
 
   _LicenseCheckState(this.licence, this.body) {
     verifierLicence();
+    horloge();
   }
 
   void verifierLicence() async {
@@ -27,6 +30,13 @@ class _LicenseCheckState extends State<FlutterLicenseCheck> {
       setState(() {
         actif = valide;
       });
+    });
+  }
+
+  void horloge() async {
+    const temps = const Duration(minutes: 1);
+    new Timer.periodic(temps, (Timer t) {
+      verifierLicence();
     });
   }
 
