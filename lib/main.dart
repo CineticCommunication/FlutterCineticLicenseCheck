@@ -5,22 +5,17 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(FlutterLicenseCheck());
 
-class FlutterLicenseCheck extends StatefulWidget {
-  FlutterLicenseCheck({Key key, this.body, this.licence}) : super(key: key);
+class FlutterLicenseCheck extends StatelessWidget {
+  // FlutterLicenseCheck({Key key, this.body, this.licence}) : super(key: key);
 
   final Widget body;
   final String licence;
 
-  @override
-  _LicenseCheckState createState() => _LicenseCheckState(licence, body);
-}
+  final state;
 
-class _LicenseCheckState extends State<FlutterLicenseCheck> {
-  double screenWidth;
-  double screenHeight;
   bool actif = true;
 
-  _LicenseCheckState(this.licence, this.body) {
+  FlutterLicenseCheck({Key key, this.body, this.licence, this.state}) : super(key: key) {
     verifierLicence();
     horloge();
   }
@@ -29,7 +24,8 @@ class _LicenseCheckState extends State<FlutterLicenseCheck> {
   void verifierLicence() async {
     await LicenceService.verifierLicence(licence).then((valide) {
       if (!valide) {
-        setState(() {
+        
+        state.setState(() {
           actif = valide;
         });
       }
@@ -43,9 +39,6 @@ class _LicenseCheckState extends State<FlutterLicenseCheck> {
     });
   }
 
-  final Widget body;
-
-  final String licence;
 
   @override
   Widget build(BuildContext context) {
@@ -95,4 +88,6 @@ class _LicenseCheckState extends State<FlutterLicenseCheck> {
           ))
         : body;
   }
+
 }
+
