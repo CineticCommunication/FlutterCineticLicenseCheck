@@ -28,7 +28,7 @@ class _LicenseCheckState extends State<FlutterLicenseCheck> {
     return Stack(
       children: <Widget>[
         body,
-        (actif) ? Container(
+        (!actif) ? Container(
           width: screenWidth,
           height: screenHeight,
           decoration: BoxDecoration(
