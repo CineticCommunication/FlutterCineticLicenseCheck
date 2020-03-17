@@ -4,20 +4,18 @@ import 'package:FlutterCineticLicenseCheck/services/licence.service.dart';
 import 'package:flutter/material.dart';
 
 class FlutterLicenseCheck extends StatefulWidget {
-  FlutterLicenseCheck(this.licence, this.body);
-  Widget body;
+  FlutterLicenseCheck(this.licence);
   final String licence;
   @override
-  _WidgetPrincipalState createState() => _WidgetPrincipalState(licence, body);
+  _WidgetPrincipalState createState() => _WidgetPrincipalState(licence);
 }
 
 class _WidgetPrincipalState extends State<FlutterLicenseCheck> {
   bool actif = true;
 
-  Widget body;
   String licence;
 
-  _WidgetPrincipalState(this.licence, this.body) {
+  _WidgetPrincipalState(this.licence) {
     verifierLicence();
     horloge();
   }
@@ -26,16 +24,11 @@ class _WidgetPrincipalState extends State<FlutterLicenseCheck> {
   void verifierLicence() async {
     await LicenceService.verifierLicence(licence).then((valide) {
       print("Votre licence est " + ((valide) ? "valide" : "invalide"));
-      if (!valide) {
+
+      if (!valide || !actif) {
         setState(() {
           actif = valide;
         });
-      } else {
-        if (!actif) {
-          setState(() {
-            actif = valide;
-          });
-        }
       }
     });
   }
@@ -53,7 +46,6 @@ class _WidgetPrincipalState extends State<FlutterLicenseCheck> {
         ? MaterialApp(
             home: Stack(
             children: <Widget>[
-              body,
               Scaffold(
                 backgroundColor: Colors.red.withOpacity(0.80),
                 body: Center(
@@ -98,6 +90,6 @@ class _WidgetPrincipalState extends State<FlutterLicenseCheck> {
               ),
             ],
           ))
-        : body;
+        : Container();
   }
 }
